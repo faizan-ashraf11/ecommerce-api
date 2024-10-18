@@ -38,3 +38,10 @@ export const BAD_REQUEST: StatusCode = new StatusCode(
     "Bad Request Error",
     StatusCodes.BAD_REQUEST,
     StatusCodes.BAD_REQUEST);
+
+export const REMOVED: StatusCode = new StatusCode(
+    "Removed",
+    "Product Removed Successfully!",
+    StatusCodes.CREATED,
+    StatusCodes.CREATED
+);

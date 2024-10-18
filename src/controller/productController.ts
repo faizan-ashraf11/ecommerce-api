@@ -1,7 +1,7 @@
-import ProductRequestDto, { AddProductRequestDto } from "../dto/request/productRequestDto";
+import ProductRequestDto, { AddProductRequestDto, ProductDeleteRequestDto } from "../dto/request/productRequestDto";
 import Response from "../common/responce/Responce";
 import { StatusCodes } from "http-status-codes";
-import { Body, Get, HttpCode, JsonController, Post, QueryParams } from "routing-controllers";
+import { Body, Delete, Get, HttpCode, JsonController, Post, QueryParams } from "routing-controllers";
 import { OpenAPI } from "routing-controllers-openapi";
 import ProductService from "../services/productsService";
 
@@ -30,5 +30,17 @@ export class ProductController {
     @Post('/product')
     async addProduct(@Body({ validate: true }) request: AddProductRequestDto) : Promise<Response<any>>{
         return await this.productService.addProducts(request);
+    }
+
+    @OpenAPI({
+        summary: 'Remove Product',
+        description: 'Remove Product by productId'
+    })
+    @HttpCode(StatusCodes.OK)
+    @Delete()
+    async removeProduct(@QueryParams() query: ProductDeleteRequestDto) : Promise<Response<any>> {
+        return await this.productService.removeProduct(
+            query.productId
+        );
     }
 }

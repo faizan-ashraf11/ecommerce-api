@@ -5,7 +5,7 @@ import { ProductRepository } from "../repository/productRepository";
 import ProductMapper from "../mapper/productMapper";
 import ProductEntity from '../entity/productEntity';
 import { EntityManager } from 'typeorm';
-import { CREATED } from '../common/responce/StatusCode';
+import { CREATED, REMOVED } from '../common/responce/StatusCode';
 
 export default class ProductService {
     private productRepo = ProductRepository
@@ -27,4 +27,14 @@ export default class ProductService {
         return new Response<any>(CREATED);
     }
 
+    async removeProduct(productId: number) : Promise<Response<any>>{
+        let product : ProductEntity;
+
+        await this.productRepo.manager.transaction(async (entityManager: EntityManager) => {
+            product = await this.productRepo.getProductByProductId(productId);
+            product = await entityManager.remove(product);
+        })
+
+        return new Response<any>(REMOVED);
+    }
 }

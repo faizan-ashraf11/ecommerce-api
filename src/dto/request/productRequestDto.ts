@@ -47,3 +47,11 @@ export class AddProductRequestDto{
     quantity: number;
 
 }
+
+export class ProductDeleteRequestDto{
+
+    @IsNotEmpty()
+    @IsNumber()
+    productId: number;
+    
+}
