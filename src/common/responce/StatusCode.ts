@@ -60,6 +60,13 @@ export const Cart_REMOVED: StatusCode = new StatusCode(
     StatusCodes.CREATED
 );
 
+export const Favorite_REMOVED: StatusCode = new StatusCode(
+    "Removed",
+    "Product Removed From Favorites Successfully!",
+    StatusCodes.CREATED,
+    StatusCodes.CREATED
+);
+
 export const Product_Updated: StatusCode = new StatusCode(
     "Product Updated",
     "Product Updated Successfully!",

@@ -1,5 +1,6 @@
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import CartEntity from "./cartEntity";
+import FavoriteEntity from "./favoriteEntity";
 
 @Entity('products')
 export default class ProductEntity {
@@ -37,4 +38,8 @@ export default class ProductEntity {
     @OneToOne(()=> CartEntity , (cart) => cart.products)
     @JoinColumn({ name: 'productId' })
     carts: CartEntity;
+    
+    @OneToOne(()=> FavoriteEntity , (cart) => cart.productsFav)
+    @JoinColumn({ name: 'productId' })
+    favPro: FavoriteEntity;
 }

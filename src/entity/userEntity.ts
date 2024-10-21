@@ -1,5 +1,6 @@
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import CartEntity from "./cartEntity";
+import FavoriteEntity from "./favoriteEntity";
 
 @Entity('users')
 export default class UserEntity {
@@ -22,4 +23,8 @@ export default class UserEntity {
     @OneToOne(()=> CartEntity , (user) => user.users )
     @JoinColumn({ name: 'userId' })
     carts: CartEntity;
+
+    @OneToOne(()=> FavoriteEntity , (user) => user.usersFav )
+    @JoinColumn({ name: 'userId' })
+    favPro: FavoriteEntity;
 }

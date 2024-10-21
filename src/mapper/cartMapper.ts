@@ -7,7 +7,6 @@ export default class CartMapper {
 
     public static lookupMap(carts: CartEntity[]): CartResponseDto[] {
         let cartProducts : CartResponseDto[] = [];
-        console.log('carts' , carts);
         carts.forEach((d: any)=>{
             cartProducts.push({
                 cartId: d?.cartId,
