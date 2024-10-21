@@ -4,12 +4,12 @@ export default class StatusCode {
     message: any;
     detail: string;
     status: any;
-    errorCode: number;
+    statusCode: number;
 
     constructor(message: string, detail: string, errorCode: number, status: number) {
         this.message = message;
         this.detail = detail;
-        this.errorCode = errorCode;
+        this.statusCode = errorCode;
         this.status = status;
     }
 }
@@ -39,9 +39,23 @@ export const BAD_REQUEST: StatusCode = new StatusCode(
     StatusCodes.BAD_REQUEST,
     StatusCodes.BAD_REQUEST);
 
+export const Not_Found: StatusCode = new StatusCode(
+    "Error",
+    "Given Entity Not Found!",
+    StatusCodes.NOT_FOUND,
+    StatusCodes.NOT_FOUND
+);
+
 export const Product_REMOVED: StatusCode = new StatusCode(
     "Removed",
     "Product Removed Successfully!",
+    StatusCodes.CREATED,
+    StatusCodes.CREATED
+);
+
+export const Cart_REMOVED: StatusCode = new StatusCode(
+    "Removed",
+    "Product Removed From Cart Successfully!",
     StatusCodes.CREATED,
     StatusCodes.CREATED
 );

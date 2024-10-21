@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import CartEntity from "./cartEntity";
 
 @Entity('products')
 export default class ProductEntity {
@@ -33,4 +34,7 @@ export default class ProductEntity {
     @Column()
     quantity: number;
     
+    @OneToOne(()=> CartEntity , (cart) => cart.products)
+    @JoinColumn({ name: 'productId' })
+    carts: CartEntity;
 }

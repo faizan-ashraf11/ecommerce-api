@@ -14,10 +14,12 @@ export default class ProductMapper {
                 productName: p?.productName,
                 price: p?.price,
                 quantity: p?.quantity,
-                primaryPic: this.generateLinkForImage(p?.primaryPic , p?.productId , 0),
-                productImages: [p?.pic1 , p?.pic2 , p?.pic3 , p?.pic4 , p?.pic5]?.filter(e=> e !== null && e !== undefined )?.map((base64: string , index: number)=>{
-                    return this.generateLinkForImage(base64 , p?.productId , index+1);
-                })
+                // primaryPic: this.generateLinkForImage(p?.primaryPic , p?.productId , 0),
+                // productImages: [p?.pic1 , p?.pic2 , p?.pic3 , p?.pic4 , p?.pic5]?.filter(e=> e !== null && e !== undefined )?.map((base64: string , index: number)=>{
+                //     return this.generateLinkForImage(base64 , p?.productId , index+1);
+                // })
+                primaryPic: p?.primaryPic,
+                productImages: [p?.pic1 , p?.pic2 , p?.pic3 , p?.pic4 , p?.pic5]?.filter(e=> e !== null && e !== undefined )
             });
         });
         return productData;

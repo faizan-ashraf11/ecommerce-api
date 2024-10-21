@@ -27,7 +27,7 @@ export class ProductController {
         description: 'Add Product'
     })
     @HttpCode(StatusCodes.OK)
-    @Post('/product')
+    @Post('/add')
     async addProduct(@Body({ validate: true }) request: AddProductRequestDto) : Promise<Response<any>>{
         return await this.productService.addProducts(request);
     }
@@ -49,7 +49,7 @@ export class ProductController {
         description: 'Update Products Data by Product Id'
     })
     @HttpCode(StatusCodes.OK)
-    @Put('/product')
+    @Put('/update')
     async updateProduct(@Body({ validate: true }) request: UpdateProductRequestDto) : Promise<Response<any>>{
         return await this.productService.updateProduct(request.productId, request);
     }
