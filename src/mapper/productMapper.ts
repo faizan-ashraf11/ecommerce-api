@@ -1,6 +1,8 @@
 import { AddProductRequestDto } from "dto/request/productRequestDto";
 import ProductResponseDto from "../dto/response/productResponseDto";
 import ProductEntity from "../entity/productEntity";
+import * as fs from 'fs';
+import * as path from 'path';
 
 export default class ProductMapper {
 
@@ -12,8 +14,10 @@ export default class ProductMapper {
                 productName: p?.productName,
                 price: p?.price,
                 quantity: p?.quantity,
-                primaryPic: p?.primaryPic,
-                productImages: [p?.pic1 , p?.pic2 , p?.pic3 , p?.pic4 , p?.pic5]?.filter(e=> e !== null && e !== undefined )
+                primaryPic: this.generateLinkForImage(p?.primaryPic , p?.productId , 0),
+                productImages: [p?.pic1 , p?.pic2 , p?.pic3 , p?.pic4 , p?.pic5]?.filter(e=> e !== null && e !== undefined )?.map((base64: string , index: number)=>{
+                    return this.generateLinkForImage(base64 , p?.productId , index+1);
+                })
             });
         });
         return productData;
@@ -34,4 +38,20 @@ export default class ProductMapper {
         return product;
     }
 
+    public static generateLinkForImage(base64String: string , productId: number , index: number) : string {
+
+        const base64 = base64String.replace('/^data:image\/\w+;base64,/' , '');
+        const buffers = Buffer.from(base64 , 'base64');
+
+        const uploadDirector = path.join(__dirname , '../uploads' , String(productId));
+        if(!fs.existsSync(uploadDirector)){
+            fs.mkdirSync(uploadDirector , { recursive: true });
+        }
+
+        const fileName = `image_${index}.jpg`;
+        const filePath = path.join(uploadDirector , fileName);
+        fs.writeFileSync(filePath , buffers);
+
+        return `http://localhost:4300/uploads/${productId}/${fileName}`;
+    }
 }

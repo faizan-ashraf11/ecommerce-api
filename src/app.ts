@@ -20,6 +20,7 @@ export default class App{
         this.initializeDataSource();
         this.initializeMiddleware();
         this.initializeController();
+        this.setStaticImages();
         initializeSwagger(this.app);
     }
 
@@ -56,6 +57,10 @@ export default class App{
                 defaultErrorHandler: false
             }
         )
+    }
+
+    private setStaticImages(){
+        this.app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
     }
 
     public listen(){
