@@ -39,9 +39,23 @@ export const BAD_REQUEST: StatusCode = new StatusCode(
     StatusCodes.BAD_REQUEST,
     StatusCodes.BAD_REQUEST);
 
-export const REMOVED: StatusCode = new StatusCode(
+export const Product_REMOVED: StatusCode = new StatusCode(
     "Removed",
     "Product Removed Successfully!",
     StatusCodes.CREATED,
     StatusCodes.CREATED
+);
+
+export const Product_Updated: StatusCode = new StatusCode(
+    "Product Updated",
+    "Product Updated Successfully!",
+    StatusCodes.CREATED,
+    StatusCodes.CREATED
+);
+
+export const Product_Not_Found: StatusCode = new StatusCode(
+    "Not Found",
+    "Product Not Found!",
+    StatusCodes.NOT_FOUND,
+    StatusCodes.NOT_FOUND
 );
